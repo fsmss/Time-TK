@@ -1,0 +1,32 @@
+model_name=TimeTK
+
+root_path_name=../../dataset/exchange_rate
+data_path_name=exchange_rate.csv
+model_id_name=exchange_rate
+data_name=custom
+
+
+seq_len=96
+for pred_len in 96 192 336 720
+do
+for random_seed in 2024
+do
+    ~/.conda/envs/mytorch/python -u ../../run.py \
+      --is_training 1 \
+      --root_path $root_path_name \
+      --data_path $data_path_name \
+      --model_id $model_id_name'_'$seq_len'_'$pred_len \
+      --model $model_name \
+      --data $data_name \
+      --features M \
+      --seq_len $seq_len \
+      --pred_len $pred_len \
+      --enc_in 8 \
+      --cycle 24 \
+      --train_epochs 30 \
+      --patience 3 \
+      --dropout 0.5 \
+      --itr 1 --batch_size 128 --learning_rate 0.001 --random_seed $random_seed
+done
+done
+
