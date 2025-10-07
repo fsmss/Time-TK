@@ -1,8 +1,8 @@
-model_name=TimeTK
+model_name=iTransformer
 
 root_path_name=./dataset/
-data_path_name=PEMS08.npz
-model_id_name=PEMS08
+data_path_name=PEMS04.npz
+model_id_name=PEMS04
 data_name=PEMS
 
 
@@ -21,11 +21,11 @@ do
       --features M \
       --seq_len $seq_len \
       --pred_len $pred_len \
-      --enc_in 170 \
+      --enc_in 307 \
       --cycle 288 \
       --train_epochs 30 \
-      --use_revin 1 \
       --patience 5 \
+      --use_revin 0 \
       --itr 1 --batch_size 32 --learning_rate 0.003 --random_seed $random_seed
 done
 done

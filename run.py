@@ -17,7 +17,7 @@ parser.add_argument('--model', type=str, required=True, default='DLinear',
                     help='model name, options: [DLinear, Informer, Autoformer, ...]')
 
 
-#FSM
+
 parser.add_argument('--d_state', type=int, default=16, help='SSM state expansion factor')
 parser.add_argument('--d_conv', type=int, default=4, help='local convolution width')
 parser.add_argument('--expand', type=int, default=2, help='local convolution width')

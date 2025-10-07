@@ -17,8 +17,6 @@ class Model(nn.Module):
         self.use_revin = configs.use_revin
         self.use_tq = True  # ablation parameter, default: True
         self.channel_aggre = True   # ablation parameter, default: True
-        if self.use_tq:
-            self.temporalQuery = torch.nn.Parameter(torch.zeros(self.cycle_len, self.enc_in), requires_grad=True)
 
         if self.channel_aggre:
             self.channelAggregator = nn.MultiheadAttention(embed_dim=self.seq_len, num_heads=4, batch_first=True, dropout=0.5)
@@ -87,11 +85,6 @@ class Model(nn.Module):
         if self.use_tq:
             if self.channel_aggre:
                 channel_information = self.channelAggregator(query=x_cat, key=x_input, value=x_input)[0]
-        else:
-            if self.channel_aggre:
-                channel_information = self.channelAggregator(query=x_input, key=x_input, value=x_input)[0]
-            else:
-                channel_information = 0
 
         input = self.input_proj(x_input+channel_information)
 

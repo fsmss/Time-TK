@@ -1,17 +1,17 @@
-model_name=TimeTK
+model_name=iTransformer
 
-root_path_name=../../dataset/electricity/
-data_path_name=electricity.csv
-model_id_name=Electricity
-data_name=custom
+root_path_name=./dataset/
+data_path_name=PEMS08.npz
+model_id_name=PEMS08
+data_name=PEMS
 
 
 seq_len=96
-for pred_len in 96 192 336 720
+for pred_len in 12 24 48 96
 do
 for random_seed in 2024
 do
-    ~/.conda/envs/mytorch/python -u ../../run.py \
+    python -u run.py \
       --is_training 1 \
       --root_path $root_path_name \
       --data_path $data_path_name \
@@ -21,12 +21,11 @@ do
       --features M \
       --seq_len $seq_len \
       --pred_len $pred_len \
-      --enc_in 321 \
-      --cycle 168 \
+      --enc_in 170 \
+      --cycle 288 \
       --train_epochs 30 \
+      --use_revin 1 \
       --patience 5 \
       --itr 1 --batch_size 32 --learning_rate 0.003 --random_seed $random_seed
 done
 done
-
-

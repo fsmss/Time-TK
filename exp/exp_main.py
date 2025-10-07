@@ -36,8 +36,7 @@ class Exp_Main(Exp_Basic):
             'PatchTST': PatchTST,
             'SegRNN': SegRNN,
             'iTransformer': iTransformer,
-            'TimeXer': TimeXer,
-            'TimeTK': TimeTK,
+            'TimeXer': TimeXer
         }
         model = model_dict[self.args.model].Model(self.args).float()
 

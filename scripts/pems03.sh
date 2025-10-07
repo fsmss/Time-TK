@@ -1,12 +1,13 @@
-model_name=TimeTK
+model_name=iTransformer
 
 root_path_name=./dataset/
-data_path_name=ETTh1.csv
-model_id_name=ETTh1
-data_name=ETTh1
+data_path_name=PEMS03.npz
+model_id_name=PEMS03
+data_name=PEMS
+
 
 seq_len=96
-for pred_len in 96 192 336 720
+for pred_len in 12 24 48 96
 do
 for random_seed in 2024
 do
@@ -20,13 +21,12 @@ do
       --features M \
       --seq_len $seq_len \
       --pred_len $pred_len \
-      --enc_in 7 \
-      --cycle 24 \
+      --enc_in 358 \
+      --cycle 288 \
       --train_epochs 30 \
       --patience 5 \
-      --dropout 0.5 \
-      --itr 1 --batch_size 256 --learning_rate 0.001 --random_seed $random_seed
+      --use_revin 0 \
+      --itr 1 --batch_size 32 --learning_rate 0.003 --random_seed $random_seed
 done
 done
-
 

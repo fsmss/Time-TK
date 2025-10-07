@@ -1,10 +1,9 @@
-model_name=TimeTK
+model_name=iTransformer
 
 root_path_name=./dataset/
-data_path_name=traffic.csv
-model_id_name=traffic
+data_path_name=weather.csv
+model_id_name=weather
 data_name=custom
-
 
 seq_len=96
 for pred_len in 96 192 336 720
@@ -21,10 +20,12 @@ do
       --features M \
       --seq_len $seq_len \
       --pred_len $pred_len \
-      --enc_in 862 \
-      --cycle 168 \
+      --enc_in 21 \
+      --cycle 144 \
       --train_epochs 30 \
       --patience 5 \
-      --itr 1 --batch_size 16 --learning_rate 0.003 --random_seed $random_seed
+      --dropout 0.5 \
+      --itr 1 --batch_size 64 --learning_rate 0.001 --random_seed $random_seed
 done
 done
+

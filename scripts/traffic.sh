@@ -1,8 +1,8 @@
-model_name=TimeTK
+model_name=iTransformer
 
-root_path_name=../../dataset/exchange_rate
-data_path_name=exchange_rate.csv
-model_id_name=exchange_rate
+root_path_name=./dataset/
+data_path_name=traffic.csv
+model_id_name=traffic
 data_name=custom
 
 
@@ -11,7 +11,7 @@ for pred_len in 96 192 336 720
 do
 for random_seed in 2024
 do
-    ~/.conda/envs/mytorch/python -u ../../run.py \
+    python -u run.py \
       --is_training 1 \
       --root_path $root_path_name \
       --data_path $data_path_name \
@@ -21,12 +21,10 @@ do
       --features M \
       --seq_len $seq_len \
       --pred_len $pred_len \
-      --enc_in 8 \
-      --cycle 24 \
+      --enc_in 862 \
+      --cycle 168 \
       --train_epochs 30 \
-      --patience 3 \
-      --dropout 0.5 \
-      --itr 1 --batch_size 128 --learning_rate 0.001 --random_seed $random_seed
+      --patience 5 \
+      --itr 1 --batch_size 16 --learning_rate 0.003 --random_seed $random_seed
 done
 done
-
