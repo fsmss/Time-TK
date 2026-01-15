@@ -1,8 +1,7 @@
 from data_provider.data_factory import data_provider
 from exp.exp_basic import Exp_Basic
-from models import Informer, Autoformer, TimeTK, Transformer, DLinear, Linear, NLinear, PatchTST, SegRNN, CycleNet, \
-    iTransformer, TimeXer
-from utils.tools import EarlyStopping, adjust_learning_rate, visual, test_params_flop
+from models import Informer, Autoformer, TimeTK, Transformer, DLinear, Linear, NLinear, PatchTST, SegRNN,iTransformer, TimeXer
+from utils.tools import EarlyStopping, adjust_learning_rate, test_params_flop
 from utils.metrics import metric
 
 import numpy as np
@@ -36,7 +35,8 @@ class Exp_Main(Exp_Basic):
             'PatchTST': PatchTST,
             'SegRNN': SegRNN,
             'iTransformer': iTransformer,
-            'TimeXer': TimeXer
+            'TimeXer': TimeXer,
+            'TimeTK': TimeTK,
         }
         model = model_dict[self.args.model].Model(self.args).float()
 
